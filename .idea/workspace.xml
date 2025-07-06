@@ -5,9 +5,28 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0e359f3a-00fb-45f5-883a-43f2b9411cee" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/app/views/pages/home.html.erb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/database.yml" beforeDir="false" afterPath="$PROJECT_DIR$/config/database.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/deploy.yml" beforeDir="false" afterPath="$PROJECT_DIR$/config/deploy.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Gemfile" beforeDir="false" afterPath="$PROJECT_DIR$/Gemfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/assets/stylesheets/application.css" beforeDir="false" afterPath="$PROJECT_DIR$/app/assets/stylesheets/application.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/controllers/pages_controller.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/pages_controller.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/controllers/recipes_controller.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/recipes_controller.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/controllers/users/recipes_controller.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/users/recipes_controller.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/helpers/application_helper.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/helpers/application_helper.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/layouts/application.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/layouts/application.html.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/pages/help.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/pages/help.html.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/recipes/_form.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/recipes/_form.html.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/recipes/edit.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/recipes/edit.html.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/recipes/index.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/recipes/index.html.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/recipes/new.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/recipes/new.html.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/recipes/show.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/recipes/show.html.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/shared/_recipes.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/shared/_recipes.html.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/shared/recipes.turbo_stream.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/shared/recipes.turbo_stream.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/users/_form.html.erb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/users/edit.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/users/edit.html.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/users/new.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/users/new.html.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/users/recipes/index.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/users/recipes/index.html.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/routes.rb" beforeDir="false" afterPath="$PROJECT_DIR$/config/routes.rb" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -48,6 +67,7 @@
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
+    "ruby.structure.view.model.defaults.configured": "true",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -143,7 +163,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1751770604672</updated>
-      <workItem from="1751770606212" duration="3453000" />
+      <workItem from="1751770606212" duration="10733000" />
     </task>
     <servers />
   </component>
@@ -151,6 +171,6 @@
     <option name="version" value="3" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/smidge@smidge.rcov" NAME="smidge Coverage Results" MODIFIED="1751770630490" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="smidge" />
+    <SUITE FILE_PATH="coverage/smidge@smidge.rcov" NAME="smidge Coverage Results" MODIFIED="1751839538072" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="smidge" />
   </component>
 </project>

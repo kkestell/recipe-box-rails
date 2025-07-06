@@ -1,7 +1,7 @@
 <%= form_with model: recipe do |form| %>
   <% if recipe.errors.any? %>
-    <div role="alert">
-      <p><strong><%= pluralize(recipe.errors.count, "error") %> prohibited this recipe from being saved:</strong></p>
+    <div>
+      <strong><%= pluralize(recipe.errors.count, "error") %> prohibited this recipe from being saved:</strong>
       <ul>
         <% recipe.errors.full_messages.each do |message| %>
           <li><%= message %></li>
@@ -10,51 +10,45 @@
     </div>
   <% end %>
 
-  <div class="recipe-form__container">
-    <div class="recipe-form__content">
-      <%# This text_area will have the id 'recipe_content' by default %>
+  <div>
+    <div>
       <%= form.text_area :content %>
     </div>
 
-    <div class="recipe-form__meta">
+    <div>
       <div>
-        <%= form.label :category %><br>
+        <%= form.label :category %>
         <%= form.select :category, recipe_category_options, { prompt: 'Select a Category' }, { required: true } %>
       </div>
 
       <div>
-        <%= form.label :cuisine %><br>
+        <%= form.label :cuisine %>
         <%= form.select :cuisine, recipe_cuisine_options, { include_blank: 'None' } %>
       </div>
 
       <div>
-        <%= form.label :yield %><br>
+        <%= form.label :yield %>
         <%= form.text_field :yield %>
       </div>
 
       <div>
-        <%= form.label :prep_time, 'Prep Time' %><br>
+        <%= form.label :prep_time, 'Prep Time' %>
         <%= form.text_field :prep_time %>
       </div>
 
       <div>
-        <%= form.label :cook_time, 'Cook Time' %><br>
+        <%= form.label :cook_time, 'Cook Time' %>
         <%= form.text_field :cook_time %>
       </div>
 
       <div>
-        <%= form.label :source %><br>
+        <%= form.label :source %>
         <%= form.text_field :source %>
       </div>
     </div>
   </div>
 
-  <div class="recipe-form__footer">
-    <%= form.submit class: 'btn' %>
+  <div>
+    <%= form.submit %>
   </div>
 <% end %>
-
-<%# Add a script tag to initialize CodeMirror on the text area %>
-<script>
-
-</script>

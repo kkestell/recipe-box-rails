@@ -14,10 +14,9 @@
   <link rel="icon" href="/icon.svg" type="image/svg+xml">
   <link rel="apple-touch-icon" href="/icon.png">
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/6.65.7/codemirror.min.js" integrity="sha512-8RnEqURPUc5aqFEN04aQEiPlSAdE0jlFS/9iGgUyNtwFnSKCXhmB6ZTNl7LnDtDWKabJIASzXrzD0K+LYexU9g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/6.65.7/codemirror.min.css" integrity="sha512-uf06llspW44/LZpHzHT6qBOIVODjWtv4MxCricRxkzvopAlSWnTf6hpZTFxuuZcuNE9CBQhqE0Seu1CoRk84nQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/6.65.7/codemirror.min.js" xintegrity="sha512-8RnEqURPUc5aqFEN04aQEiPlSAdE0jlFS/9iGgUyNtwFnSKCXhmB6ZTNl7LnDtDWKabJIASzXrzD0K+LYexU9g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/6.65.7/codemirror.min.css" xintegrity="sha512-uf06llspW44/LZpHzHT6qBOIVODjWtv4MxCricRxkzvopAlSWnTf6hpZTFxuuZcuNE9CBQhqE0Seu1CoRk84nQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-  <%# Includes all stylesheet files in app/assets/stylesheets %>
   <%= stylesheet_link_tag :app, "data-turbo-track": "reload" %>
   <%= javascript_importmap_tags %>
 </head>
@@ -35,30 +34,28 @@
     <a href="#">&times;</a>
   </div>
 <% end %>
-<div class="container">
-  <nav>
-    <ul>
-      <li><h1>Smidge</h1></li>
-      <li><%= link_to "Recipes", recipes_path %></li>
-      <li><%= link_to "Help", help_path %></li>
-    </ul>
-    <div class="session">
-      <% if authenticated? %>
-        <%= link_to "My Recipes", user_recipes_path(Current.user) %>
-        <%= link_to "Edit Profile", profile_path %>
-        <%= button_to "Log Out", session_path, method: :delete, class: "btn-link" %>
-      <% else %>
-        <%= link_to "Sign up", sign_up_path %>
-        <%= link_to "Sign in", new_session_path %>
-      <% end %>
-    </div>
-  </nav>
-</div>
+
+<nav>
+  <h1><%= link_to "Smidge", root_path %></h1>
+  <ul>
+    <li><%= link_to "Recipes", recipes_path %></li>
+    <li><%= link_to "Help", help_path %></li>
+  </ul>
+  <ul>
+    <% if authenticated? %>
+      <li><%= link_to "New Recipe", new_recipe_path %></li>
+      <li><%= link_to "My Recipes", user_recipes_path(Current.user) %></li>
+      <li><%= link_to "Edit Profile", profile_path %></li>
+      <li><%= button_to "Log Out", session_path, method: :delete %></li>
+    <% else %>
+      <li><%= link_to "Sign up", sign_up_path %></li>
+      <li><%= link_to "Sign in", new_session_path %></li>
+    <% end %>
+  </ul>
+</nav>
 
 <main>
-  <div class="container">
-    <%= yield %>
-  </div>
+  <%= yield %>
 </main>
 </body>
 </html>

@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   get "help", to: "pages#help"
   # Defines the root path route ("/")
-  root "recipes#index"
+  root "pages#home"
 
   # Routes for user sign-up and profile editing
   get "sign_up", to: "users#new"

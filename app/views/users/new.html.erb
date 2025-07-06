@@ -1,6 +1,6 @@
 <main>
   <h1>Sign Up</h1>
-  <%= form_with model: @user do |form| %>
+  <%= form_with model: @user, data: { turbo: false } do |form| %>
     <% if @user.errors.any? %>
       <div role="alert">
         <p><%= pluralize(@user.errors.count, "error") %> prohibited this from being saved:</p>

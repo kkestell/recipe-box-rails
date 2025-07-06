@@ -5,7 +5,10 @@ class Users::RecipesController < ApplicationController
 
   def index
     @user = User.find(params[:user_id])
-    @recipes = @user.recipes.includes(:user).page(params[:page]).per(50)
+    base_recipes = @user.recipes.includes(:user)
+    @recipes = RecipeSearchService.new(base_recipes, search_params).call.page(params[:page]).per(50)
+    @categories = helpers.recipe_category_options
+    @cuisines = helpers.recipe_cuisine_options
 
     respond_to do |format|
       format.html
@@ -69,5 +72,11 @@ class Users::RecipesController < ApplicationController
       type: "application/pdf",
       disposition: "inline" # Displays the PDF directly in the browser
     )
+  end
+
+  private
+
+  def search_params
+    params.permit(:search, :category, :cuisine)
   end
 end

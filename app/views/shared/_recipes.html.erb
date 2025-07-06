@@ -1,10 +1,20 @@
-<table class="recipes">
+<table id="recipes">
+  <thead>
+  <tr>
+    <th scope="col">Title</th>
+    <th scope="col">Cuisine</th>
+    <th scope="col">Category</th>
+    <th scope="col">Author</th>
+  </tr>
+  </thead>
+  <tbody>
   <% recipes.each do |recipe| %>
     <tr>
-      <td><%= link_to recipe.title, recipe %></td>
-      <td><% if recipe.cuisine.present? %><%= recipe.cuisine %><% end %></td>
-      <td><% if recipe.category.present? %><%= recipe.category %><% end %></td>
-      <td><%= link_to recipe.user.name, user_recipes_path(recipe.user) %></td>
+      <td><%= link_to recipe.title, recipe, data: { turbo_frame: "_top" } %></td>
+      <td><%= recipe.cuisine.presence || 'N/A' %></td>
+      <td><%= recipe.category.presence || 'N/A' %></td>
+      <td><%= link_to recipe.user.name, user_recipes_path(recipe.user), data: { turbo_frame: "_top" } %></td>
     </tr>
   <% end %>
+  </tbody>
 </table>

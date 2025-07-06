@@ -1,13 +1,13 @@
-<div class="page-header">
-  <h1>Recipes</h1>
-  <% if authenticated? %>
-    <div class="page-actions">
-      <%= link_to "New Recipe", new_recipe_path, class: "btn" %>
-    </div>
-  <% end %>
-</div>
+<h1>Recipes</h1>
 
-<%= render 'shared/recipes', recipes: @recipes %>
-<div id="pagination">
-  <%= paginate @recipes, remote: true %>
-</div>
+<%= render 'shared/search_form',
+           search_url: recipes_path,
+           categories: @categories,
+           cuisines: @cuisines %>
+
+<%= turbo_frame_tag "recipes-container" do %>
+  <%= render 'shared/recipes', recipes: @recipes %>
+  <div id="pagination">
+    <%= paginate @recipes, remote: true %>
+  </div>
+<% end %>

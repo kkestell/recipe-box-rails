@@ -1,0 +1,18 @@
+<%= form_with url: search_url, method: :get, local: true, data: { turbo_frame: "recipes-container" } do |form| %>
+  <div class="search-form">
+    <%= form.text_field :search, placeholder: "Search recipes...", value: params[:search] %>
+
+    <%= form.select :category,
+                    options_from_collection_for_select(categories, :itself, :itself, params[:category]),
+                    { prompt: "All Categories", include_blank: false },
+                    { onchange: "this.form.submit()" } %>
+
+    <%= form.select :cuisine,
+                    options_from_collection_for_select(cuisines, :itself, :itself, params[:cuisine]),
+                    { prompt: "All Cuisines", include_blank: false },
+                    { onchange: "this.form.submit()" } %>
+
+    <%= form.submit "Search" %>
+    <%= link_to "Clear", search_url, class: "btn-clear" %>
+  </div>
+<% end %>

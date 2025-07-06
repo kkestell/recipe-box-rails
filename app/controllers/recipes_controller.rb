@@ -7,7 +7,10 @@ class RecipesController < ApplicationController
   allow_unauthenticated_access only: %i[ index show pdf ]
 
   def index
-    @recipes = Recipe.includes(:user).page(params[:page]).per(50)
+    base_recipes = Recipe.includes(:user)
+    @recipes = RecipeSearchService.new(base_recipes, search_params).call.page(params[:page]).per(50)
+    @categories = helpers.recipe_category_options
+    @cuisines = helpers.recipe_cuisine_options
 
     respond_to do |format|
       format.html
@@ -107,5 +110,9 @@ class RecipesController < ApplicationController
       :source,
       :title
     )
+  end
+
+  def search_params
+    params.permit(:search, :category, :cuisine)
   end
 end

@@ -1,8 +1,5 @@
-<%= turbo_stream.replace "recipes" do %>
-  <%= render 'recipes', recipes: @recipes %>
-<% end %>
-
-<%= turbo_stream.replace "pagination" do %>
+<%= turbo_stream.replace "recipes-container" do %>
+  <%= render 'shared/recipes', recipes: @recipes %>
   <div id="pagination">
     <%= paginate @recipes, remote: true %>
   </div>

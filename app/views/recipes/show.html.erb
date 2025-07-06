@@ -1,21 +1,17 @@
-<article class="recipe">
-  <div class="page-header">
-    <div>
-      <h1><%= @parsed_recipe.title %></h1>
-      <p>by <%= @recipe.user.name %></p>
-      <% if @recipe.source.present? %>
-        <p><small>Source: <%= @recipe.source %></small></p>
-      <% end %>
-    </div>
-    <div class="page-actions">
-      <%= link_to "PDF", pdf_recipe_path(@recipe), class: "btn" %>
-      <% if authenticated? and Current.user == @recipe.user %>
-        <%= link_to "Edit", edit_recipe_path(@recipe), class: "btn" %>
-        <%= button_to "Delete", @recipe, method: :delete, class: "btn", data: { turbo_confirm: "Are you sure?" } %>
-      <% end %>
-    </div>
-  </div>
-  <dl class="recipe-meta">
+<article>
+  <h1><%= @parsed_recipe.title %></h1>
+  <p>by <%= @recipe.user.name %></p>
+  <% if @recipe.source.present? %>
+    <p>Source: <%= @recipe.source %></p>
+  <% end %>
+
+  <%= link_to "PDF", pdf_recipe_path(@recipe) %>
+  <% if authenticated? and Current.user == @recipe.user %>
+    <%= link_to "Edit", edit_recipe_path(@recipe) %>
+    <%= button_to "Delete", @recipe, method: :delete, data: { turbo_confirm: "Are you sure?" } %>
+  <% end %>
+
+  <dl>
     <% if @recipe.category.present? %>
       <dt>Category</dt>
       <dd><%= @recipe.category %></dd>
@@ -37,23 +33,24 @@
       <dd><%= @recipe.formatted_cook_time %></dd>
     <% end %>
   </dl>
+
   <% @parsed_recipe.components.each do |component| %>
-    <section class="recipe-component">
+    <section>
       <% if component.name %>
         <h2><%= component.name %></h2>
       <% end %>
       <% if component.steps.any? %>
         <ol>
           <% component.steps.each do |step| %>
-            <li class="recipe-step">
+            <li>
               <p><%= fancy(step.text) %></p>
-              <ul>
-                <% if step.ingredients.any? %>
-                <% step.ingredients.each do |ingredient| %>
-                  <li><%= fancy(ingredient) %></li>
-                <% end %>
-                <% end %>
-              </ul>
+              <% if step.ingredients.any? %>
+                <ul>
+                  <% step.ingredients.each do |ingredient| %>
+                    <li><%= fancy(ingredient) %></li>
+                  <% end %>
+                </ul>
+              <% end %>
             </li>
           <% end %>
         </ol>
