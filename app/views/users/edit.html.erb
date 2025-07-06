@@ -1,0 +1,29 @@
+<main>
+  <h1>Edit Your Profile</h1>
+  <%= form_with model: @user do |form| %>
+    <% if @user.errors.any? %>
+      <div role="alert">
+        <p><%= pluralize(@user.errors.count, "error") %> prohibited this from being saved:</p>
+        <ul>
+          <% @user.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div>
+      <%= form.label :name %>
+      <%= form.text_field :name, required: true %>
+    </div>
+
+    <div>
+      <%= form.label :email_address %>
+      <%= form.email_field :email_address, required: true %>
+    </div>
+
+    <div>
+      <%= form.submit %>
+    </div>
+  <% end %>
+</main>

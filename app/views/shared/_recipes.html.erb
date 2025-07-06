@@ -1,0 +1,10 @@
+<table class="recipes">
+  <% recipes.each do |recipe| %>
+    <tr>
+      <td><%= link_to recipe.title, recipe %></td>
+      <td><% if recipe.cuisine.present? %><%= recipe.cuisine %><% end %></td>
+      <td><% if recipe.category.present? %><%= recipe.category %><% end %></td>
+      <td><%= link_to recipe.user.name, user_recipes_path(recipe.user) %></td>
+    </tr>
+  <% end %>
+</table>

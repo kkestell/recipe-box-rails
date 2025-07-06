@@ -1,0 +1,13 @@
+<div class="page-header">
+  <h1>Recipes</h1>
+  <% if authenticated? %>
+    <div class="page-actions">
+      <%= link_to "New Recipe", new_recipe_path, class: "btn" %>
+    </div>
+  <% end %>
+</div>
+
+<%= render 'shared/recipes', recipes: @recipes %>
+<div id="pagination">
+  <%= paginate @recipes, remote: true %>
+</div>

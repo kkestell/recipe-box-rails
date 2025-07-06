@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title><%= content_for(:title) || "Smidge" %></title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="mobile-web-app-capable" content="yes">
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
+
+  <%= yield :head %>
+
+  <link rel="icon" href="/icon.png" type="image/png">
+  <link rel="icon" href="/icon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/icon.png">
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/6.65.7/codemirror.min.js" integrity="sha512-8RnEqURPUc5aqFEN04aQEiPlSAdE0jlFS/9iGgUyNtwFnSKCXhmB6ZTNl7LnDtDWKabJIASzXrzD0K+LYexU9g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/6.65.7/codemirror.min.css" integrity="sha512-uf06llspW44/LZpHzHT6qBOIVODjWtv4MxCricRxkzvopAlSWnTf6hpZTFxuuZcuNE9CBQhqE0Seu1CoRk84nQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <%# Includes all stylesheet files in app/assets/stylesheets %>
+  <%= stylesheet_link_tag :app, "data-turbo-track": "reload" %>
+  <%= javascript_importmap_tags %>
+</head>
+
+<body>
+<% if flash[:alert] %>
+  <div class="alert">
+    <p><%= flash[:alert] %></p>
+    <a href="#">&times;</a>
+  </div>
+<% end %>
+<% if flash[:notice] %>
+  <div class="notice">
+    <p><%= flash[:notice] %></p>
+    <a href="#">&times;</a>
+  </div>
+<% end %>
+<div class="container">
+  <nav>
+    <ul>
+      <li><h1>Smidge</h1></li>
+      <li><%= link_to "Recipes", recipes_path %></li>
+      <li><%= link_to "Help", help_path %></li>
+    </ul>
+    <div class="session">
+      <% if authenticated? %>
+        <%= link_to "My Recipes", user_recipes_path(Current.user) %>
+        <%= link_to "Edit Profile", profile_path %>
+        <%= button_to "Log Out", session_path, method: :delete, class: "btn-link" %>
+      <% else %>
+        <%= link_to "Sign up", sign_up_path %>
+        <%= link_to "Sign in", new_session_path %>
+      <% end %>
+    </div>
+  </nav>
+</div>
+
+<main>
+  <div class="container">
+    <%= yield %>
+  </div>
+</main>
+</body>
+</html>

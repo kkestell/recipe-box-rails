@@ -1,0 +1,19 @@
+<div class="page-header">
+  <h1>Cookbook</h1>
+</div>
+
+<%= form_with url: cookbook_user_recipes_path(@user), method: :post, data: { turbo: false } do |form| %>
+  <div>
+    <%= form.label :title, "Cookbook Title" %>
+    <%= form.text_field :title, value: (@user.name.presence || 'User') + "'s Cookbook" %>
+  </div>
+
+  <div>
+    <%= form.label :subtitle, "Cookbook Subtitle" %>
+    <%= form.text_field :subtitle %>
+  </div>
+
+  <div>
+    <%= form.submit "Generate PDF", class: "btn" %>
+  </div>
+<% end %>
