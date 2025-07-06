@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="recipes: test" uuid="3fb34722-54ce-40ab-a3d2-f4dc7b8b93a3">
+    <data-source source="LOCAL" name="smidge: test" uuid="d290d4fd-ac3c-4cbc-9e48-ae2a9ef86e88">
       <driver-ref>sqlite.xerial</driver-ref>
       <synchronize>true</synchronize>
       <imported>true</imported>
@@ -10,7 +10,7 @@
       <jdbc-url>jdbc:sqlite:$PROJECT_DIR$/storage/test.sqlite3</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
-    <data-source source="LOCAL" name="recipes: development" uuid="ab3ac09b-ac05-48be-a81a-a26ec61c60fc">
+    <data-source source="LOCAL" name="smidge: development" uuid="7624aa8e-5d7e-4b2d-95fd-59ba5b44ca8d">
       <driver-ref>sqlite.xerial</driver-ref>
       <synchronize>true</synchronize>
       <imported>true</imported>

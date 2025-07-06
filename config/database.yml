@@ -26,7 +26,6 @@ test:
 production:
   primary:
     <<: *default
-    # IMPORTANT: Replace 'smidge' with your actual app folder name
     database: /home/protected/smidge/storage/production.sqlite3
   cache:
     <<: *default
