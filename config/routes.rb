@@ -4,8 +4,8 @@ Rails.application.routes.draw do
   root "pages#home"
 
   # Routes for user sign-up and profile editing
-  get "sign_up", to: "users#new"
-  get "profile", to: "users#edit"
+  # get "sign_up", to: "users#new"
+  # get "profile", to: "users#edit"
 
   resources :users do
     resources :recipes, controller: "users/recipes", only: [ :index ] do

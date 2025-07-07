@@ -39,16 +39,13 @@
   <h1><%= link_to "Smidge", root_path %></h1>
   <ul>
     <li><%= link_to "Recipes", recipes_path %></li>
-    <li><%= link_to "Help", help_path %></li>
   </ul>
   <ul>
     <% if authenticated? %>
       <li><%= link_to "New Recipe", new_recipe_path %></li>
-      <li><%= link_to "My Recipes", user_recipes_path(Current.user) %></li>
-      <li><%= link_to "Edit Profile", profile_path %></li>
-      <li><%= button_to "Log Out", session_path, method: :delete %></li>
+      <li><%= link_to Current.user.name, user_path(Current.user) %></li>
     <% else %>
-      <li><%= link_to "Sign up", sign_up_path %></li>
+      <li><%= link_to "Sign up", new_user_path %></li>
       <li><%= link_to "Sign in", new_session_path %></li>
     <% end %>
   </ul>

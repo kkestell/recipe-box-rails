@@ -5,11 +5,13 @@
     <p>Source: <%= @recipe.source %></p>
   <% end %>
 
-  <%= link_to "PDF", pdf_recipe_path(@recipe) %>
-  <% if authenticated? and Current.user == @recipe.user %>
-    <%= link_to "Edit", edit_recipe_path(@recipe) %>
-    <%= button_to "Delete", @recipe, method: :delete, data: { turbo_confirm: "Are you sure?" } %>
-  <% end %>
+  <ul>
+    <li><%= link_to "PDF", pdf_recipe_path(@recipe) %></li>
+    <% if authenticated? and Current.user == @recipe.user %>
+      <li><%= link_to "Edit", edit_recipe_path(@recipe) %></li>
+      <li><%= button_to "Delete", @recipe, method: :delete, data: { turbo_confirm: "Are you sure?" } %></li>
+    <% end %>
+  </ul>
 
   <dl>
     <% if @recipe.category.present? %>

@@ -1,0 +1,8 @@
+<h1><%= @user.name %></h1>
+<ul>
+  <li><%= link_to "Recipes", user_recipes_path(@user) %></li>
+  <% if authenticated? && Current.user == @user %>
+    <li><%= link_to "Edit Profile", edit_user_path(Current.user) %></li>
+    <li><%= button_to "Log Out", session_path, method: :delete %></li>
+  <% end %>
+</ul>

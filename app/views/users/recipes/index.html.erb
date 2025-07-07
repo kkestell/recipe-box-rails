@@ -1,5 +1,7 @@
 <h1><%= @user.name %>'s Recipes</h1>
-<%= link_to "Cookbook", cookbook_user_recipes_path(@user), class: "btn" %>
+<ul>
+  <li><%= link_to "Cookbook", cookbook_user_recipes_path(@user), class: "btn" %></li>
+</ul>
 
 <%= render 'shared/search_form',
            search_url: user_recipes_path(@user),
