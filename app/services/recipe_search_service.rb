@@ -17,7 +17,12 @@ class RecipeSearchService
 
   def apply_search
     return if @params[:search].blank?
-    @recipes = @recipes.where("title ILIKE ?", "%#{@params[:search]}%")
+
+    if sqlite_database?
+      @recipes = @recipes.where("title LIKE ? COLLATE NOCASE", "%#{@params[:search]}%")
+    else
+      @recipes = @recipes.where("title ILIKE ?", "%#{@params[:search]}%")
+    end
   end
 
   def apply_category_filter
@@ -32,5 +37,9 @@ class RecipeSearchService
 
   def apply_title_order
     @recipes = @recipes.order(:title)
+  end
+
+  def sqlite_database?
+    ActiveRecord::Base.connection.adapter_name == "SQLite"
   end
 end

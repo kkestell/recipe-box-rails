@@ -1,7 +1,11 @@
-<h1><%= @user.name %>'s Recipes</h1>
-<ul>
-  <li><%= link_to "Cookbook", cookbook_user_recipes_path(@user), class: "btn" %></li>
-</ul>
+<div class="page-header">
+  <div class="page-header__content">
+    <h1 class="page-header__title"><%= @user.name %>'s Recipes</h1>
+  </div>
+  <ul class="page-header__actions">
+    <li class="page-header__action"><%= link_to "Cookbook", cookbook_user_recipes_path(@user) %></li>
+  </ul>
+</div>
 
 <%= render 'shared/search_form',
            search_url: user_recipes_path(@user),

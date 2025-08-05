@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   get "help", to: "pages#help"
   # Defines the root path route ("/")
-  root "pages#home"
+  root "recipes#index"
 
   # Routes for user sign-up and profile editing
   # get "sign_up", to: "users#new"
@@ -31,6 +31,8 @@ Rails.application.routes.draw do
   # Recipe routes
   resources :recipes do
     get "pdf", on: :member
+    get "import", on: :collection
+    post "import_from_url", on: :collection
   end
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.

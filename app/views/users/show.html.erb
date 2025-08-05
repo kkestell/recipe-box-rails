@@ -1,8 +1,12 @@
-<h1><%= @user.name %></h1>
-<ul>
-  <li><%= link_to "Recipes", user_recipes_path(@user) %></li>
-  <% if authenticated? && Current.user == @user %>
-    <li><%= link_to "Edit Profile", edit_user_path(Current.user) %></li>
-    <li><%= button_to "Log Out", session_path, method: :delete %></li>
-  <% end %>
-</ul>
+<div class="page-header">
+  <div class="page-header__content">
+    <h1 class="page-header__title"><%= @user.name %></h1>
+  </div>
+  <ul class="page-header__actions">
+    <li class="page-header__action"><%= link_to "Recipes", user_recipes_path(@user) %></li>
+    <% if authenticated? && Current.user == @user %>
+      <li class="page-header__action"><%= link_to "Edit Profile", edit_user_path(Current.user) %></li>
+      <li class="page-header__action"><%= button_to "Log Out", session_path, method: :delete %></li>
+    <% end %>
+  </ul>
+</div>

@@ -1,0 +1,384 @@
+/* RESET */
+/* 1. Use a more-intuitive box-sizing model */
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+/* 2. Remove default margin */
+* {
+    margin: 0;
+}
+
+/* 3. Enable keyword animations */
+@media (prefers-reduced-motion: no-preference) {
+    html {
+        interpolate-size: allow-keywords;
+    }
+}
+
+body {
+    /* 4. Add accessible line-height */
+    line-height: 1.5;
+    /* 5. Improve text rendering */
+    -webkit-font-smoothing: antialiased;
+}
+
+/* 6. Improve media defaults */
+img, picture, video, canvas, svg {
+    display: block;
+    max-width: 100%;
+}
+
+/* 7. Inherit fonts for form controls */
+input, button, textarea, select {
+    font: inherit;
+}
+
+/* 8. Avoid text overflows */
+p, h1, h2, h3, h4, h5, h6 {
+    overflow-wrap: break-word;
+}
+
+/* 9. Improve line wrapping */
+p {
+    text-wrap: pretty;
+}
+h1, h2, h3, h4, h5, h6 {
+    text-wrap: balance;
+}
+
+/*
+  10. Create a root stacking context
+*/
+#root, #__next {
+    isolation: isolate;
+}
+
+/* ??? */
+
+body {
+    max-width: 60rem;
+    margin: auto;
+    padding: 2rem;
+    font-family: "Source Serif 4", serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+}
+
+h1 {
+    font-size: 1.5rem;
+}
+
+/* ========================================================================== */
+/* = NAVBAR                                                                   */
+/* ========================================================================== */
+
+.navbar {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin: 2rem 0;
+}
+
+.navbar__brand {
+    margin: 0;
+}
+
+.navbar__brand-link {
+    text-decoration: none;
+    color: inherit;
+}
+
+.navbar__nav {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    gap: 1rem;
+}
+
+.navbar__nav--primary {
+    margin-right: auto;
+}
+
+.navbar__nav--secondary {
+    margin-left: auto;
+}
+
+.navbar__nav-item {
+    margin: 0;
+}
+
+.navbar__nav-link {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* ========================================================================== */
+/* = PAGE HEADER                                                              */
+/* ========================================================================== */
+
+.page-header {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.page-header__content {
+    flex: 1;
+}
+
+.page-header__actions {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    gap: 1rem;
+}
+
+.page-header__action {
+    margin: 0;
+}
+
+.page-header__action a {
+    text-decoration: none;
+}
+
+.page-header__action button {
+    background: none;
+    border: none;
+    padding: 0;
+    font: inherit;
+    color: inherit;
+    cursor: pointer;
+}
+
+.page-header__title {
+    margin: 0 0 0.5rem 0;
+}
+
+@media (min-width: 768px) {
+    .page-header {
+        flex-direction: row;
+        align-items: flex-start;
+        gap: 2rem;
+    }
+}
+
+/* ========================================================================== */
+/* = RECIPES                                                                  */
+/* ========================================================================== */
+
+.recipe__author {
+    margin: 0 0 0.5rem 0;
+}
+
+.recipe__meta {
+    display: inline-grid;
+    grid-template-columns: repeat(3, max-content);
+    column-gap: 2rem;
+    row-gap: 0.5rem;
+    font-size: 0.875rem;
+    margin: 2rem 0;
+}
+
+.recipe__meta-label {
+    font-weight: bold;
+}
+
+.recipe__meta-value {
+    margin: 0;
+}
+
+.recipe__meta-item--source {
+    grid-column: 1 / -1;
+    grid-row: 3;
+}
+
+.recipe__meta-item--category {
+    grid-column: 1;
+    grid-row: 1;
+}
+
+.recipe__meta-item--cuisine {
+    grid-column: 2;
+    grid-row: 1;
+}
+
+.recipe__meta-item--yield {
+    grid-column: 1;
+    grid-row: 1;
+}
+
+.recipe__meta-item--prep-time {
+    grid-column: 2;
+    grid-row: 2;
+}
+
+.recipe__meta-item--cook-time {
+    grid-column: 3;
+    grid-row: 2;
+}
+
+@media (min-width: 768px) {
+    .recipe__meta {
+        grid-template-columns: repeat(5, max-content);
+    }
+
+    .recipe__meta-item--source {
+        grid-column: 1 / -1;
+        grid-row: 2;
+    }
+
+    .recipe__meta-item--category {
+        grid-column: 1;
+        grid-row: 1;
+    }
+
+    .recipe__meta-item--cuisine {
+        grid-column: 2;
+        grid-row: 1;
+    }
+
+    .recipe__meta-item--yield {
+        grid-column: 3;
+        grid-row: 1;
+    }
+
+    .recipe__meta-item--prep-time {
+        grid-column: 4;
+        grid-row: 1;
+    }
+
+    .recipe__meta-item--cook-time {
+        grid-column: 5;
+        grid-row: 1;
+    }
+}
+
+@media (min-width: 1024px) {
+    .recipe__steps {
+        list-style: none;
+        counter-reset: step-counter;
+        padding-left: 0;
+    }
+
+    .recipe__step {
+        display: flex;
+        align-items: baseline;
+        counter-increment: step-counter;
+        margin-bottom: 1rem;
+    }
+
+    .recipe__step::before {
+        content: counter(step-counter) ". ";
+        margin-right: 0.5rem;
+    }
+
+    .recipe__step-text {
+        flex: 0 0 60%;
+    }
+
+    .recipe__step-ingredients {
+        flex: 0 0 35%;
+        margin: 0 0 0 1.5rem;
+        padding-left: 1.5rem;
+    }
+}
+
+/* RECIPES TABLE */
+
+.search-form {
+    padding: 1rem 0;
+}
+
+.search-form__container {
+    display: flex;
+    flex-direction: row;
+    gap: 0.5rem;
+    align-items: center;
+}
+
+.search-form__input {
+    flex-grow: 1;
+}
+
+.recipes-table {
+    width: 100%;
+}
+
+.recipes-table__cell--header {
+    text-align: left;
+}
+
+/* RECIPE FORM */
+
+.CodeMirror {
+    height: auto;
+    border: 1px inset;
+    margin-top: 2rem;
+    font-family: "Source Serif 4", serif;
+}
+
+.CodeMirror-wrap {
+    min-height: 300px !important;
+}
+
+.CodeMirror-scroll {
+    overflow: hidden !important;
+}
+
+/* Mobile first - stacked layout */
+.recipe-form__metadata {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.recipe-form__field {
+    display: flex;
+    flex-direction: column;
+}
+
+.recipe-form__time-inputs {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.recipe-form__time-input {
+    width: 3.5rem;
+}
+
+/* Desktop layout - flexbox */
+@media (min-width: 768px) {
+    .recipe-form__metadata {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+        margin: 2rem 0;
+    }
+
+    .recipe-form__row {
+        display: flex;
+        gap: 1rem;
+    }
+
+    .recipe-form__row .recipe-form__field {
+        flex: 0;
+    }
+}
+
+/* PAGINATION */
+.pagination {
+    margin-top: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.pagination a, .pagination .page {
+    margin: 0.25rem;
+    padding: 0.25rem;
+}

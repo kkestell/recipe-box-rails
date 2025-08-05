@@ -64,14 +64,9 @@ module TypstRenderer
 
       title = metadata['title'].presence || 'Untitled Recipe'
 
-      metadata_order = %w[yield prep_time cook_time category cuisine]
-      grid_meta = metadata.except('title', 'source').compact_blank
+      has_metadata = %w[yield prep_time cook_time category cuisine].any? { |key| metadata[key].present? }
 
-      sorted_meta = grid_meta.to_a.sort_by do |k, _|
-        metadata_order.index(k.to_s) || metadata_order.length
-      end.to_h
-
-      typst << (sorted_meta.any? ? render_title_with_metadata_grid(title, sorted_meta, title_heading_level) : "#heading(level: #{title_heading_level})[#{title}]")
+      typst << (has_metadata ? render_title_with_metadata_grid(title, metadata, title_heading_level) : "#heading(level: #{title_heading_level})[#{title}]")
 
       typst << "#v(1.5em)\n#line(length: 100%, stroke: 0.5pt)\n#v(1.5em)"
 
@@ -99,7 +94,7 @@ module TypstRenderer
             #align(right)[
               #block[
                 #set text(size: 9pt)
-                #{render_metadata_subgrid(metadata)}
+                #{render_metadata_grid(metadata)}
               ]
             ]
           ]
@@ -107,20 +102,30 @@ module TypstRenderer
       TYPST
     end
 
-    def render_metadata_subgrid(metadata)
-      metadata.to_a.each_slice(5).map do |chunk|
-        keys = chunk.map { |k, _| "[#align(center)[#text(weight: \"bold\")[#{k.humanize.titleize}]]]" }
-        values = chunk.map { |_, v| "[#align(center)[#{v.to_s.gsub('"', '\"')}]]" }
+    def render_metadata_grid(metadata)
+      yield_val = metadata['yield'].present? ? metadata['yield'].to_s.gsub('"', '\"') : ""
+      prep_time_val = metadata['prep_time'].present? ? metadata['prep_time'].to_s.gsub('"', '\"') : ""
+      cook_time_val = metadata['cook_time'].present? ? metadata['cook_time'].to_s.gsub('"', '\"') : ""
+      category_val = metadata['category'].present? ? metadata['category'].to_s.gsub('"', '\"') : ""
+      cuisine_val = metadata['cuisine'].present? ? metadata['cuisine'].to_s.gsub('"', '\"') : ""
 
-        (5 - chunk.length).times do
-          keys << "[]"
-          values << "[]"
-        end
-
-        all_items = keys + values
-
-        "#grid(columns: (auto, auto, auto, auto, auto), column-gutter: 1.5em, row-gutter: 0.75em, #{all_items.join(', ')})"
-      end.join("\n#v(1em)\n")
+      <<~TYPST
+        #grid(
+          columns: (auto, auto, auto, auto, auto),
+          column-gutter: 1.5em,
+          row-gutter: 0.75em,
+          [#align(center)[#text(weight: "bold")[Yield]]],
+          [#align(center)[#text(weight: "bold")[Prep Time]]],
+          [#align(center)[#text(weight: "bold")[Cook Time]]],
+          [#align(center)[#text(weight: "bold")[Category]]],
+          [#align(center)[#text(weight: "bold")[Cuisine]]],
+          [#align(center)[#{yield_val}]],
+          [#align(center)[#{prep_time_val}]],
+          [#align(center)[#{cook_time_val}]],
+          [#align(center)[#{category_val}]],
+          [#align(center)[#{cuisine_val}]]
+        )
+      TYPST
     end
 
     def render_step(step, index)
@@ -149,8 +154,11 @@ module TypstRenderer
 
     def fancy(text)
       return "" if text.blank?
-      # Corrected the goofy quoting here
-      text.gsub("°F", " °F").gsub(/(?<=\d)\/(?=\d)/, "⁄").gsub(/(?<=\d)x(?=\d)/, "×").gsub(/(?<=\d)-(?=\d)/, "–")
+      text
+        .gsub("°F", " °F")
+        .gsub(/(?<=\d)\/(?=\d)/, "⁄")
+        .gsub(/(?<=\d)x(?=\d)/, "×")
+        .gsub(/(?<=\d)-(?=\d)/, "–")
     end
 
     def typst_header

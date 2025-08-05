@@ -37,6 +37,8 @@ module RecipeParser
   def self.parse(recipe_text)
     raise ArgumentError, 'Recipe text cannot be empty' if recipe_text.nil? || recipe_text.strip.empty?
 
+    # TODO: Extract metadata from a frontmatter block into a hash
+
     lines = recipe_text.lines.map(&:chomp)
     recipe = nil
     current_component = nil

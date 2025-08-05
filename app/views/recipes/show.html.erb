@@ -1,55 +1,61 @@
-<article>
-  <h1><%= @parsed_recipe.title %></h1>
-  <p>by <%= @recipe.user.name %></p>
-  <% if @recipe.source.present? %>
-    <p>Source: <%= @recipe.source %></p>
-  <% end %>
+<article class="recipe">
+  <div class="page-header">
+    <div class="page-header__content">
+      <h1 class="page-header__title"><%= @parsed_recipe.title %></h1>
+      <p class="recipe__author">by <%= @recipe.user.name %></p>
+    </div>
+    <ul class="page-header__actions">
+      <li class="page-header__action"><%= link_to "PDF", pdf_recipe_path(@recipe) %></li>
+      <% if authenticated? and Current.user == @recipe.user %>
+        <li class="page-header__action"><%= link_to "Edit", edit_recipe_path(@recipe) %></li>
+        <li class="page-header__action"><%= button_to "Delete", @recipe, method: :delete, data: { turbo_confirm: "Are you sure?" } %></li>
+      <% end %>
+    </ul>
+  </div>
 
-  <ul>
-    <li><%= link_to "PDF", pdf_recipe_path(@recipe) %></li>
-    <% if authenticated? and Current.user == @recipe.user %>
-      <li><%= link_to "Edit", edit_recipe_path(@recipe) %></li>
-      <li><%= button_to "Delete", @recipe, method: :delete, data: { turbo_confirm: "Are you sure?" } %></li>
+  <dl class="recipe__meta">
+    <% if @recipe.source.present? %>
+      <div class="recipe__meta-item recipe__meta-item--source">
+        <dt class="recipe__meta-label">Source</dt>
+        <dd class="recipe__meta-value"><%= @recipe.source %></dd>
+      </div>
     <% end %>
-  </ul>
-
-  <dl>
-    <% if @recipe.category.present? %>
-      <dt>Category</dt>
-      <dd><%= @recipe.category %></dd>
-    <% end %>
-    <% if @recipe.cuisine.present? %>
-      <dt>Cuisine</dt>
-      <dd><%= @recipe.cuisine %></dd>
-    <% end %>
-    <% if @recipe.yield.present? %>
-      <dt>Yield</dt>
-      <dd><%= @recipe.yield %></dd>
-    <% end %>
-    <% if @recipe.prep_time.present? %>
-      <dt>Prep Time</dt>
-      <dd><%= @recipe.formatted_prep_time %></dd>
-    <% end %>
-    <% if @recipe.cook_time.present? %>
-      <dt>Cook Time</dt>
-      <dd><%= @recipe.formatted_cook_time %></dd>
-    <% end %>
+    <div class="recipe__meta-item recipe__meta-item--category">
+      <dt class="recipe__meta-label">Category</dt>
+      <dd class="recipe__meta-value"><%= @recipe.category %></dd>
+    </div>
+    <div class="recipe__meta-item recipe__meta-item--cuisine">
+      <dt class="recipe__meta-label">Cuisine</dt>
+      <dd class="recipe__meta-value"><%= @recipe.cuisine %></dd>
+    </div>
+    <div class="recipe__meta-item recipe__meta-item--yield">
+      <dt class="recipe__meta-label">Yield</dt>
+      <dd class="recipe__meta-value"><%= @recipe.yield %></dd>
+    </div>
+    <div class="recipe__meta-item recipe__meta-item--prep-time">
+      <dt class="recipe__meta-label">Prep Time</dt>
+      <dd class="recipe__meta-value"><%= @recipe.formatted_prep_time %></dd>
+    </div>
+    <div class="recipe__meta-item recipe__meta-item--cook-time">
+      <dt class="recipe__meta-label">Cook Time</dt>
+      <dd class="recipe__meta-value"><%= @recipe.formatted_cook_time %></dd>
+    </div>
   </dl>
 
   <% @parsed_recipe.components.each do |component| %>
-    <section>
+    <section class="recipe__component">
       <% if component.name %>
-        <h2><%= component.name %></h2>
+        <h2 class="recipe__component-title"><%= component.name %></h2>
       <% end %>
       <% if component.steps.any? %>
-        <ol>
+        <ol class="recipe__steps">
           <% component.steps.each do |step| %>
-            <li>
-              <p><%= fancy(step.text) %></p>
+            <li class="recipe__step">
+              <p class="recipe__step-text"><%= fancy(step.text) %></p>
               <% if step.ingredients.any? %>
-                <ul>
+                <ul class="recipe__step-ingredients">
                   <% step.ingredients.each do |ingredient| %>
-                    <li><%= fancy(ingredient) %></li>
+                    <li class="recipe__step-ingredient"><%= fancy(ingredient) %></li>
                   <% end %>
                 </ul>
               <% end %>

@@ -6,11 +6,10 @@ document.addEventListener("turbo:load", function() {
     if (contentTextArea) {
         CodeMirror.fromTextArea(contentTextArea, {
             lineWrapping: true,
-            lineNumbers: true,
         });
     }
 
-    const flashMessages = document.querySelectorAll('.alert, .notice');
+    const flashMessages = document.querySelectorAll('.flash');
 
     flashMessages.forEach(message => {
         const closeButton = message.querySelector('a');

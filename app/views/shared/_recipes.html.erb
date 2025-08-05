@@ -1,19 +1,19 @@
-<table id="recipes">
-  <thead>
-  <tr>
-    <th scope="col">Title</th>
-    <th scope="col">Cuisine</th>
-    <th scope="col">Category</th>
-    <th scope="col">Author</th>
+<table id="recipes" class="recipes-table">
+  <thead class="recipes-table__head">
+  <tr class="recipes-table__row recipes-table__row--header">
+    <th scope="col" class="recipes-table__cell recipes-table__cell--header">Title</th>
+    <th scope="col" class="recipes-table__cell recipes-table__cell--header">Cuisine</th>
+    <th scope="col" class="recipes-table__cell recipes-table__cell--header">Category</th>
+<!--    <th scope="col" class="recipes-table__cell recipes-table__cell--header">Author</th>-->
   </tr>
   </thead>
-  <tbody>
+  <tbody class="recipes-table__body">
   <% recipes.each do |recipe| %>
-    <tr>
-      <td><%= link_to recipe.title, recipe, data: { turbo_frame: "_top" } %></td>
-      <td><%= recipe.cuisine.presence || 'N/A' %></td>
-      <td><%= recipe.category.presence || 'N/A' %></td>
-      <td><%= link_to recipe.user.name, user_recipes_path(recipe.user), data: { turbo_frame: "_top" } %></td>
+    <tr class="recipes-table__row">
+      <td class="recipes-table__cell"><%= link_to recipe.title, recipe, data: { turbo_frame: "_top" }, class: "recipes-table__link" %></td>
+      <td class="recipes-table__cell"><%= recipe.cuisine.presence || 'N/A' %></td>
+      <td class="recipes-table__cell"><%= recipe.category.presence || 'N/A' %></td>
+<!--      <td class="recipes-table__cell"><%#= link_to recipe.user.name, user_recipes_path(recipe.user), data: { turbo_frame: "_top" }, class: "recipes-table__link" %></td>-->
     </tr>
   <% end %>
   </tbody>

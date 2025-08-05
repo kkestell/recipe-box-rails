@@ -1,18 +1,17 @@
-<%= form_with url: search_url, method: :get, local: true, data: { turbo_frame: "recipes-container" } do |form| %>
-  <div class="search-form">
-    <%= form.text_field :search, placeholder: "Search recipes...", value: params[:search] %>
-
-    <%= form.select :category,
-                    options_from_collection_for_select(categories, :itself, :itself, params[:category]),
-                    { prompt: "All Categories", include_blank: false },
-                    { onchange: "this.form.submit()" } %>
+<%= form_with url: search_url, method: :get, local: true, data: { turbo_frame: "recipes-container" }, class: "search-form" do |form| %>
+  <div class="search-form__container">
+    <%= form.text_field :search, placeholder: "Search recipes...", value: params[:search], class: "search-form__input" %>
 
     <%= form.select :cuisine,
                     options_from_collection_for_select(cuisines, :itself, :itself, params[:cuisine]),
                     { prompt: "All Cuisines", include_blank: false },
-                    { onchange: "this.form.submit()" } %>
+                    { onchange: "this.form.submit()", class: "search-form__select" } %>
 
-    <%= form.submit "Search" %>
-    <%= link_to "Clear", search_url, class: "btn-clear" %>
+    <%= form.select :category,
+                    options_from_collection_for_select(categories, :itself, :itself, params[:category]),
+                    { prompt: "All Categories", include_blank: false },
+                    { onchange: "this.form.submit()", class: "search-form__select" } %>
+
+    <%= form.submit "Search", class: "search-form__submit" %>
   </div>
 <% end %>

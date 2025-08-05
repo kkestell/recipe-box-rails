@@ -28,6 +28,6 @@ jobs:
           context: .
           push: true
           # Updated tag with your specific username and repo name
-          tags: ghcr.io/kkestell/smidge:latest
+          tags: ghcr.io/kkestell/recipe_box:latest
           secrets: |
             "RAILS_MASTER_KEY=${{ secrets.RAILS_MASTER_KEY }}"

@@ -1,4 +1,11 @@
-<div>
-  <h1>New Recipe</h1>
+<div class="page-header">
+  <div class="page-header__content">
+    <h1 class="page-header__title">New Recipe</h1>
+  </div>
+  <ul class="page-header__actions">
+    <li class="page-header__action"><%= link_to "Import from URL", import_recipes_path %></li>
+    <li class="page-header__action"><%= link_to "Help", help_path %></li>
+  </ul>
 </div>
+
 <%= render "form", recipe: @recipe %>

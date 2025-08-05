@@ -1,56 +1,70 @@
-<%= form_with model: recipe do |form| %>
+<%= form_with model: recipe, class: "recipe-form" do |form| %>
   <% if recipe.errors.any? %>
-    <div>
-      <strong><%= pluralize(recipe.errors.count, "error") %> prohibited this recipe from being saved:</strong>
-      <ul>
+    <div class="recipe-form__errors">
+      <strong class="recipe-form__errors-title">
+        <%= pluralize(recipe.errors.count, "error") %> prohibited this recipe from being saved:
+      </strong>
+      <ul class="recipe-form__errors-list">
         <% recipe.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
+          <li class="recipe-form__errors-item"><%= message %></li>
         <% end %>
       </ul>
     </div>
   <% end %>
 
-  <div>
-    <div>
-      <%= form.text_area :content %>
-      <br>
-      <li><%= link_to "Help", help_path %>
+  <%= form.text_area :content, class: "recipe-form__textarea" %>
+
+  <div class="recipe-form__metadata">
+    <div class="recipe-form__row">
+      <div class="recipe-form__field recipe-form__field--category">
+        <%= form.label :category, class: "recipe-form__label" %>
+        <%= form.select :category, recipe_category_options, { prompt: 'Select a Category' }, { required: true, class: "recipe-form__select" } %>
+      </div>
+
+      <div class="recipe-form__field recipe-form__field--cuisine">
+        <%= form.label :cuisine, class: "recipe-form__label" %>
+        <%= form.select :cuisine, recipe_cuisine_options, { include_blank: 'None' }, { class: "recipe-form__select" } %>
+      </div>
     </div>
 
-    <div>
-      <div>
-        <%= form.label :category %>
-        <%= form.select :category, recipe_category_options, { prompt: 'Select a Category' }, { required: true } %>
+    <div class="recipe-form__row">
+      <div class="recipe-form__field recipe-form__field--yield">
+        <%= form.label :yield, class: "recipe-form__label" %>
+        <%= form.text_field :yield, class: "recipe-form__input" %>
       </div>
 
-      <div>
-        <%= form.label :cuisine %>
-        <%= form.select :cuisine, recipe_cuisine_options, { include_blank: 'None' } %>
+      <div class="recipe-form__field recipe-form__field--prep-time">
+        <%= form.label :prep_time, 'Prep Time', class: "recipe-form__label" %>
+        <div class="recipe-form__time-inputs">
+          <%= form.number_field :prep_time_hours, value: recipe.prep_time ? (recipe.prep_time / 3600).to_i : nil, placeholder: "HH", min: 0, class: "recipe-form__time-input" %>
+          <span class="recipe-form__time-separator">:</span>
+          <%= form.number_field :prep_time_minutes, value: recipe.prep_time ? ((recipe.prep_time % 3600) / 60).to_i : nil, placeholder: "MM", min: 0, max: 59, class: "recipe-form__time-input" %>
+        </div>
       </div>
 
-      <div>
-        <%= form.label :yield %>
-        <%= form.text_field :yield %>
+      <div class="recipe-form__field recipe-form__field--cook-time">
+        <%= form.label :cook_time, 'Cook Time', class: "recipe-form__label" %>
+        <div class="recipe-form__time-inputs">
+          <%= form.number_field :cook_time_hours, value: recipe.cook_time ? (recipe.cook_time / 3600).to_i : nil, placeholder: "HH", min: 0, class: "recipe-form__time-input" %>
+          <span class="recipe-form__time-separator">:</span>
+          <%= form.number_field :cook_time_minutes, value: recipe.cook_time ? ((recipe.cook_time % 3600) / 60).to_i : nil, placeholder: "MM", min: 0, max: 59, class: "recipe-form__time-input" %>
+        </div>
       </div>
+    </div>
 
-      <div>
-        <%= form.label :prep_time, 'Prep Time' %>
-        <%= form.text_field :prep_time %>
-      </div>
+    <div class="recipe-form__field recipe-form__field--source">
+      <%= form.label :source, class: "recipe-form__label" %>
+      <%= form.text_field :source, class: "recipe-form__input" %>
+    </div>
 
-      <div>
-        <%= form.label :cook_time, 'Cook Time' %>
-        <%= form.text_field :cook_time %>
-      </div>
-
-      <div>
-        <%= form.label :source %>
-        <%= form.text_field :source %>
-      </div>
+    <div class="recipe-form__field recipe-form__field--draft">
+      <%= form.label :draft, 'Draft', class: "recipe-form__label" do %>
+        <%= form.check_box :draft, class: "recipe-form__label" %> Draft
+      <% end %>
     </div>
   </div>
 
-  <div>
-    <%= form.submit %>
+  <div class="recipe-form__actions">
+    <%= form.submit class: "recipe-form__submit" %>
   </div>
 <% end %>

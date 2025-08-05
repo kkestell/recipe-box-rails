@@ -1,0 +1,16 @@
+<h1>Import Recipe</h1>
+
+<%= form_with url: import_from_url_recipes_path, method: :post, data: { turbo: false }, class: "import-form" do |form| %>
+  <div class="import-form__field">
+    <%= form.label :url, "Recipe URL", class: "import-form__label" %>
+    <%= form.url_field :url, placeholder: "https://example.com/recipe", required: true, class: "import-form__input" %>
+  </div>
+
+  <div class="import-form__actions">
+    <%= form.submit "Import Recipe", class: "import-form__submit" %>
+  </div>
+<% end %>
+
+<div class="import-form__help">
+  <p>Enter the URL of a recipe from a supported website. We'll extract the recipe content and convert it to Recipe Box format for you to review and edit.</p>
+</div>

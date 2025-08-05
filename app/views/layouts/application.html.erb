@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title><%= content_for(:title) || "Smidge" %></title>
+  <title><%= content_for(:title) || "Recipe Box" %></title>
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="mobile-web-app-capable" content="yes">
@@ -14,6 +14,10 @@
   <link rel="icon" href="/icon.svg" type="image/svg+xml">
   <link rel="apple-touch-icon" href="/icon.png">
 
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&display=swap" rel="stylesheet">
+
   <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/6.65.7/codemirror.min.js" xintegrity="sha512-8RnEqURPUc5aqFEN04aQEiPlSAdE0jlFS/9iGgUyNtwFnSKCXhmB6ZTNl7LnDtDWKabJIASzXrzD0K+LYexU9g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/6.65.7/codemirror.min.css" xintegrity="sha512-uf06llspW44/LZpHzHT6qBOIVODjWtv4MxCricRxkzvopAlSWnTf6hpZTFxuuZcuNE9CBQhqE0Seu1CoRk84nQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
@@ -21,37 +25,37 @@
   <%= javascript_importmap_tags %>
 </head>
 
-<body>
+<body class="layout">
 <% if flash[:alert] %>
-  <div class="alert">
-    <p><%= flash[:alert] %></p>
-    <a href="#">&times;</a>
+  <div class="flash flash--alert">
+    <p class="flash__message"><%= flash[:alert] %></p>
+    <a href="#" class="flash__close">&times;</a>
   </div>
 <% end %>
 <% if flash[:notice] %>
-  <div class="notice">
-    <p><%= flash[:notice] %></p>
-    <a href="#">&times;</a>
+  <div class="flash flash--notice">
+    <p class="flash__message"><%= flash[:notice] %></p>
+    <a href="#" class="flash__close">&times;</a>
   </div>
 <% end %>
 
-<nav>
-  <h1><%= link_to "Smidge", root_path %></h1>
-  <ul>
-    <li><%= link_to "Recipes", recipes_path %></li>
+<nav class="navbar">
+  <h1 class="navbar__brand"><%= link_to "Recipe Box", root_path, class: "navbar__brand-link" %></h1>
+  <ul class="navbar__nav navbar__nav--primary">
+<!--    <li class="navbar__nav-item"><%#= link_to "Recipes", recipes_path, class: "navbar__nav-link" %></li>-->
   </ul>
-  <ul>
+  <ul class="navbar__nav navbar__nav--secondary">
     <% if authenticated? %>
-      <li><%= link_to "New Recipe", new_recipe_path %></li>
-      <li><%= link_to Current.user.name, user_path(Current.user) %></li>
+      <li class="navbar__nav-item"><%= link_to "New Recipe", new_recipe_path, class: "navbar__nav-link" %></li>
+      <li class="navbar__nav-item"><%= link_to Current.user.name, user_path(Current.user), class: "navbar__nav-link" %></li>
     <% else %>
-      <li><%= link_to "Sign up", new_user_path %></li>
-      <li><%= link_to "Sign in", new_session_path %></li>
+      <li class="navbar__nav-item"><%= link_to "Sign up", new_user_path, class: "navbar__nav-link" %></li>
+      <li class="navbar__nav-item"><%= link_to "Sign in", new_session_path, class: "navbar__nav-link" %></li>
     <% end %>
   </ul>
 </nav>
 
-<main>
+<main class="main">
   <%= yield %>
 </main>
 </body>
